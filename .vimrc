@@ -438,3 +438,92 @@ endfunction
 " if has("autocmd")
 "   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 "endif
+
+" NERDTree
+Bundle 'The-NERD-tree'
+
+" ctags
+set tags =tags;
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q . && cscope -Rbkq<CR>
+
+" cscope
+if has("cscope")
+    set csprg=/usr/bin/cscope
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
+    set cst
+    set csto=0
+    set nocsverb
+    if filereadable("cscope.out")
+        cs add cscope.out
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
+endif
+
+
+nmap <leader>ns :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ng :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nd :cs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nt :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ne :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nf :cs find f <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ni :cs find i <C-R>=expand("<cword>")<CR><CR>
+
+
+nmap <leader>nhs :scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nhg :scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nhd :scs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nhc :scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nht :scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nhe :scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nhf :scs find f <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nhi :scs find i <C-R>=expand("<cword>")<CR><CR>
+
+
+nmap <leader>nvs :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nvg :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nvd :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nvc :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nvt :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nve :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nvf :vert scs find f <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>nvi :vert scs find i <C-R>=expand("<cword>")<CR><CR>
+
+" taglist
+Bundle 'taglist.vim'
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_SHow_Menu=1
+let Tlist_File_Fold_Auto_Close=1
+
+" bufexplorer
+Bundle 'bufexplorer.zip'
+let g:bufExplorerDefaultHelp=0       " Do not show default help.
+let g:bufExplorerShowRelativePath=1  " Show relative paths.
+let g:bufExplorerSortBy='mru'        " Sort by most recently used.
+
+" winmanager
+Bundle 'winmanager'
+let g:winManagerWindowLayout="NERDTree|TagList"
+let g:NERDTree_title="[NERDTree]"
+
+function! NERDTree_Start()  
+    exec 'NERDTree'  
+endfunction
+
+function! NERDTree_IsValid()  
+    return 1  
+endfunction
+
+" omnicppcomplete
+Bundle 'omnicppcomplete.zip'
+filetype plugin indent on
+set completeopt=longest,menu
+let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
+let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
+let OmniCpp_MayCompleteScope = 1    " 输入 :: 后自动补全
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
+Bundle 'SuperTab'
