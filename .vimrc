@@ -11,6 +11,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'edkolev/tmuxline.vim'
 
 call vundle#end()            " required
 filetype plugin indent on
@@ -518,12 +520,16 @@ function! NERDTree_IsValid()
 endfunction
 
 " omnicppcomplete
-Bundle 'omnicppcomplete.zip'
-filetype plugin indent on
-set completeopt=longest,menu
-let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
-let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
-let OmniCpp_MayCompleteScope = 1    " 输入 :: 后自动补全
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" Bundle 'omnicppcomplete.zip'
+" filetype plugin indent on
+" set completeopt=longest,menu
+" let OmniCpp_NamespaceSearch = 2     " search namespaces in the current buffer   and in included files
+" let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
+" let OmniCpp_MayCompleteScope = 1    " 输入 :: 后自动补全
+" let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 
 Bundle 'SuperTab'
+
+" tmuxline
+let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_powerline_separators = 0
